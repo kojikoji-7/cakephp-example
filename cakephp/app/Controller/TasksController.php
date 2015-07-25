@@ -8,7 +8,7 @@ class TasksController extends AppController {
 	public $scaffold;
 
 	public function index(){
-		$options = array("condtion" => array(
+		$options = array("conditions" => array(
 				"status" => 0
 		));
 
@@ -19,7 +19,12 @@ class TasksController extends AppController {
 	}
 
 	public function done(){
-		$message = sprintf("タスク%sを完了しました", $this->request->pass[0]);
+		$id = $this->request->pass[0];
+		$this->Task->id = $id;
+		$this->Task->saveField("status", 1);
+
+
+		$message = sprintf("タスク%sを完了しました", $id);
 
 		$this->flash($message, "/Tasks/index");
 	}
