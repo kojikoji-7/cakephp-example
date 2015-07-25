@@ -26,6 +26,21 @@ class TasksController extends AppController {
 
 		$message = sprintf("タスク%sを完了しました", $id);
 
-		$this->flash($message, "/Tasks/index");
+		$this->Session->setFlash($message);
+		$this->redirect("/Tasks/index");
+	}
+
+	public function create(){
+		if($this->request->is("post")){	//登録処理
+			$data = array("name" => $this->request->data["name"]);
+
+			$id = $this->Task->save($data);
+
+			$message = sprintf("タスク%sを登録しました", $id);
+
+			$this->Session->setFlash($message);
+			$this->redirect("/Tasks/index");
+		}
+		$this->render("create");
 	}
 }
