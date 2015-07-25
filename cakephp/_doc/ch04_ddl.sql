@@ -7,5 +7,7 @@ CREATE TABLE `tasks` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-
+ALTER TABLE  `tasks` ADD
+`status` INT NOT NULL DEFAULT  '0' AFTER `body` ,
+ADD  `due_date` DATE NULL DEFAULT NULL AFTER  `status`;
 

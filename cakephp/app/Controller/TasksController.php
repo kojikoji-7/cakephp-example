@@ -1,14 +1,18 @@
 <?php
 // app/Controller/TasksController.php
 /**
- * @property User $User
+ * @property Task $Task
  */
 class TasksController extends AppController {
 
 	public $scaffold;
 
 	public function index(){
-		$tasks_data = array();
+		$options = array("condtion" => array(
+				"status" => 0
+		));
+
+		$tasks_data = $this->Task->find("all", $options);
 		$this->set('tasks_data', $tasks_data);
 
 		$this->render("index");
