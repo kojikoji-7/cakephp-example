@@ -92,4 +92,43 @@ class TasksController extends AppController {
 		$list = $this->Task->query($sql);
 		debug($list);
 	}
+
+	public function save(){
+		//新規登録
+// 		$data = array(
+// 			"name" => "hogehoge",
+// 			"status" => 0
+// 		);
+
+// 		$this->Task->save($data);
+
+// 		debug($this->Task->id);
+
+		//更新　IDをキーにして更新する
+// 		$data = array(
+// 			"Task" => array(
+// 				"id" => 1,
+// 				"name" => "hogehoge",
+// 			)
+// 		);
+
+// 		$this->Task->save($data);
+
+		//条件を指定して更新
+		$data = array(
+			"name" => "'hogehoge'",
+		);
+
+		$condtion = array(
+			"status" => 0
+		);
+		$this->Task->updateAll($data, $condtion);
+
+		//削除
+// 		$this->Task->id = 10;
+// 		$this->Task->delete(10,true);
+
+		debug($this->Task->id);
+	}
+
 }
